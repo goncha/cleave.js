@@ -71,4 +71,3 @@ DateFormatter.prototype = {
 };
 
 module.exports = DateFormatter;
-

@@ -28,6 +28,10 @@ var DefaultProperties = {
         target.datePattern = opts.datePattern || ['d', 'm', 'Y'];
         target.dateFormatter = {};
 
+        // time
+        target.time = !!opts.time;
+        target.timeIncludeSeconds = !!opts.timeIncludeSeconds
+
         // numeral
         target.numeral = !!opts.numeral;
         target.numeralDecimalScale = opts.numeralDecimalScale >= 0 ? opts.numeralDecimalScale : 2;
@@ -71,4 +75,3 @@ var DefaultProperties = {
 };
 
 module.exports = DefaultProperties;
-

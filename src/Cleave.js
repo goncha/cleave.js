@@ -86,6 +86,19 @@ Cleave.prototype = {
         pps.maxLength = Cleave.Util.getMaxLength(pps.blocks);
     },
 
+    initTimeFormatter: function () {
+        var owner = this, pps = owner.properties;
+
+        if (!pps.time) {
+            return;
+        }
+
+        pps.timeFormatter = new Cleave.TimeFormatter(pps.timeIncludeSeconds);
+        pps.blocks = pps.timeFormatter.getBlocks();
+        pps.blocksLength = pps.blocks.length;
+        pps.maxLength = Cleave.Util.getMaxLength(pps.blocks);
+    },
+
     initPhoneFormatter: function () {
         var owner = this, pps = owner.properties;
 
@@ -191,6 +204,11 @@ Cleave.prototype = {
         // date
         if (pps.date) {
             value = pps.dateFormatter.getValidatedDate(value);
+        }
+
+        // time
+        if (pps.time) {
+            value = pps.timeFormatter.getValidatedTime(value);
         }
 
         // strip delimiters
@@ -339,6 +357,7 @@ Cleave.prototype = {
 
 Cleave.NumeralFormatter = require('./shortcuts/NumeralFormatter');
 Cleave.DateFormatter = require('./shortcuts/DateFormatter');
+Cleave.TimeFormatter = require('./shortcuts/TimeFormatter');
 Cleave.PhoneFormatter = require('./shortcuts/PhoneFormatter');
 Cleave.CreditCardDetector = require('./shortcuts/CreditCardDetector');
 Cleave.Util = require('./utils/Util');
